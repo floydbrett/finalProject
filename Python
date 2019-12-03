@@ -1,0 +1,100 @@
+from sense_hat import SenseHat
+import time
+from time import sleep
+sense = SenseHat()
+g = (0,210,90) #green
+y = (255,230,0) #yellow
+e = (0,0,0) #black
+p = (110,50,210) #purple
+
+pet_sleep1 = [
+e, e, e, e, e, e, e, e,
+e, g, g, g, e, g, g, g,
+g, e, e, e, g, e, e, e,
+g, p, p, g, g, g, p, p,
+g, g, g, y, y, y, g, g,
+g, g, g, g, g, g, g, g,
+g, g, g, g, g, g, g, g,
+e, e, e, e, e, e, e, e
+]
+
+    
+pet_sleep2 = [
+e, e, e, e, e, e, e, e, 
+e, e, e, g, g, g, g, g,
+e, e, e, e, e, e, e, g, 
+e, e, e, e, e, e, g, e, 
+e, e, e, e, e, g, e, e, 
+e, e, e, e, g, e, e, e, 
+e, e, e, g, g, g, g, g, 
+e, e, e, e, e, e, e, e
+]
+
+pet_sleep3 = [
+e,  e,  e,  e,  e,  e,  e,  e, 
+e,  e,  g,  g,  g,  g,  g,  e, 
+e,  e,  e,  e,  e,  e,  g,  e, 
+e,  e,  e,  e,  e,  g,  e,  e, 
+e,  e,  e,  e,  g,  e,  e,  e, 
+e,  e,  e,  g,  e,  e,  e,  e, 
+e,  e,  g,  g,  g,  g,  g,  e, 
+e,  e,  e,  e,  e,  e,  e,  e
+]
+    
+pet_sleep4 = [
+e,  e,  e,  e,  e,  e,  e,  e, 
+e,  g,  g,  g,  g,  g,  e,  e, 
+e,  e,  e,  e,  e,  g,  e,  e, 
+e,  e,  e,  e,  g,  e,  e,  e, 
+e,  e,  e,  g,  e,  e,  e,  e, 
+e,  e,  g,  e,  e,  e,  e,  e, 
+e,  g,  g,  g,  g,  g,  e,  e, 
+e,  e,  e,  e,  e,  e,  e,  e
+]
+
+pet_walk1 = [
+e,  e,  e,  e,  e,  e,  e,  e,
+e,  g,  g,  g,  e,  g,  g,  g, 
+g,  g,  e,  g,  g,  g,  e,  g, 
+g,  p,  p,  g,  g,  g,  p,  p, 
+g,  g,  g,  y,   y,   y,  g,  g,
+g,  g,  g,  g,  g,  g,  g,  g, 
+g,  g,  g,  g,  g,  g,  g,  g, 
+e,  g,  g,  e,  e,  g,  g,  e
+]
+
+pet_walk2 = [
+e,  e,  e,  e,  e,  e,  e,  e,
+e,  g,  g,  g,  e,  g,  g,  g, 
+g,  g,  e,  g,  g,  g,  e,  g, 
+g,  p,  p,  g,  g,  g,  p,  p, 
+g,  g,  g,  y,   y,   y,  g,  g,
+g,  g,  g,  g,  g,  g,  g,  g, 
+g,  g,  g,  g,  g,  g,  g,  g, 
+e,  e,  g,  g,  e,  e,  g,  g
+]
+    
+def walking():
+    for i in range (10):
+        sense.set_pixels(pet_walk1)
+        time.sleep(1)
+        sense.set_pixels(pet_walk2)
+        time.sleep(1)
+sense.clear()
+
+while True:
+    acc = sense.get_accelerometer_raw()
+    if acc['x'] > 2 or acc['y'] > 2 or acc['z'] > 2:
+        walking()
+
+def sleeping():
+    true = 1
+    while(true):
+        sense.set_pixels(pet_sleep1)
+        time.sleep(1)
+        sense.set_pixels(pet_sleep2)
+        time.sleep(1)
+        sense.set_pixels(pet_sleep3)
+        time.sleep(1)
+        sense.set_pixels(pet_sleep4)
+        time.sleep(1)
