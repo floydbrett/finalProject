@@ -6,6 +6,8 @@ g = (0,210,90) #green
 y = (255,230,0) #yellow
 e = (0,0,0) #black
 p = (110,50,210) #purple
+b = (0,240,240) #blue (for the fly)
+r = (240,0,0) // red
 anim_speed = 1 # This controls how long the wait (time.sleep()) is inbetween animation frames. Lower makes it move more quickly.
 
 pet_sleep1 = [
