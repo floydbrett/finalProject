@@ -6,6 +6,7 @@ g = (0,210,90) #green
 y = (255,230,0) #yellow
 e = (0,0,0) #black
 p = (110,50,210) #purple
+anim_speed = 1 # This controls how long the wait (time.sleep()) is inbetween animation frames. Lower makes it move more quickly.
 
 pet_sleep1 = [
 e, e, e, e, e, e, e, e,
@@ -77,9 +78,9 @@ e,  e,  g,  g,  e,  e,  g,  g
 def walking():
     for i in range (10):
         sense.set_pixels(pet_walk1)
-        time.sleep(1)
+        time.sleep(anim_speed)
         sense.set_pixels(pet_walk2)
-        time.sleep(1)
+        time.sleep(anim_speed)
 sense.clear()
 
 while True:
@@ -91,10 +92,10 @@ def sleeping():
     true = 1
     while(true):
         sense.set_pixels(pet_sleep1)
-        time.sleep(1)
+        time.sleep(anim_speed)
         sense.set_pixels(pet_sleep2)
-        time.sleep(1)
+        time.sleep(anim_speed)
         sense.set_pixels(pet_sleep3)
-        time.sleep(1)
+        time.sleep(anim_speed)
         sense.set_pixels(pet_sleep4)
-        time.sleep(1)
+        time.sleep(anim_speed)
