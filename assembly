@@ -5,6 +5,8 @@
 @ http://www.science.smith.edu/dftwiki/index.php/Tutorial:_Assembly_Language_with_the_Raspberry_Pi#Blinking_LED
 @ we might end up having to use pyrex or cython to connect python and c/c++ (and eventually assembly)
 
+@ https://github.com/raspberrypilearning/astro-pi-guide/blob/master/inputs-outputs/buttons.md
+
 .text
 .global main
 
