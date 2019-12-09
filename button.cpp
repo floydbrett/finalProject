@@ -10,7 +10,7 @@ int main(int argc, char** argv)
     //This is for GPIO17
     const int INPUT_PIN = 11;
     
-    pinMode (INPUT_PIN, INPUT);
+    //pinMode (INPUT_PIN, INPUT);
     
     while(true)
     {
