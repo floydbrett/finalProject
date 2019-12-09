@@ -22,3 +22,6 @@ int main(int argc, char** argv)
     
     return 0;
 }
+
+//to compile: g++ button.cpp -o button
+//./button
