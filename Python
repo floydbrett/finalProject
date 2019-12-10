@@ -1,14 +1,168 @@
+#import GPIO library and button object
+import RPi.GPIO as GPIO
+from gpiozero import Button
+
+#relate buttons to GPIO pins
+button1 = Button(17)
+button2 = Button(5)
+button3 = Button(16)
+button4 = Button(6)
+button5 = Button(18)
+
+#import sense_hat library and time library
 from sense_hat import SenseHat
 import time
 from time import sleep
 sense = SenseHat()
+
+#color codes
 g = (0,210,90) #green
 y = (255,230,0) #yellow
 e = (0,0,0) #black
-p = (110,50,210) #purple
-b = (0,240,240) #blue (for the fly)
+p = (251,176,179) #pink
 r = (240,0,0) #red
-anim_speed = 1 # This controls how long the wait (time.sleep()) is inbetween animation frames. Lower makes it move more quickly.
+b = (0,240,240) #blue (the fly)
+
+#main function where functions are run from
+def main():
+    print("Main function")
+    print("Press a button to interact with frog")
+    true = 1
+    while true:
+        #if pin lets off a low voltage (button pressed) then execute function
+        if GPIO.input(17) == GPIO.LOW:
+            print('Eating animation')
+            eating()
+
+
+        if GPIO.input(5) == GPIO.LOW:
+            print('Jumping animation')
+            jumping()
+
+
+        if GPIO.input(16) == GPIO.LOW:
+            print("Sleeping animation")
+            sleeping()
+
+
+        if GPIO.input(6) == GPIO.LOW:
+            print("Walking animation")
+            walking()
+
+        # this button exits loop
+        if GPIO.input(18) == GPIO.LOW:
+            true = 0
+            print("Program ends!")
+
+# walking function goes through walking frames five times
+def walking():
+    for i in range (5):
+        sense.set_pixels(pet_walk1)
+        time.sleep(1)
+        sense.set_pixels(pet_walk2)
+        time.sleep(1)
+        sense.set_pixels(pet_walk3)
+        time.sleep(1)
+sense.clear()
+
+# executes sleeping frames
+def sleeping():
+        sense.set_pixels(pet_sleep1)
+        time.sleep(1)
+        sense.set_pixels(pet_sleep2)
+        time.sleep(1)
+        sense.set_pixels(pet_sleep3)
+        time.sleep(1)
+        sense.set_pixels(pet_sleep4)
+        time.sleep(1)
+
+# executes jumping frames
+def jumping():
+        sense.set_pixels(Pet_jump1)
+        time.sleep(1)
+        sense.set_pixels(Pet_jump2)
+        time.sleep(1)
+        sense.set_pixels(Pet_jump3)
+        time.sleep(1)
+        sense.set_pixels(Pet_jump4)
+        time.sleep(1)
+
+# executes eating frames
+def eating():
+        sense.set_pixels(pet_eat1)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat2)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat3)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat4)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat5)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat6)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat7)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat8)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat9)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat10)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat11)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat12)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat13)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat14)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat15)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat16)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat17)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat18)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat19)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat20)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat21)
+        time.sleep(.5)
+        sense.set_pixels(pet_eat22)
+        time.sleep(.2)
+        sense.set_pixels(pet_eat23)
+        time.sleep(.2)
+        sense.set_pixels(pet_eat24)
+        time.sleep(.2)
+        sense.set_pixels(pet_eat25)
+        time.sleep(.2)
+        sense.set_pixels(pet_eat26)
+        time.sleep(.2)
+        sense.set_pixels(pet_eat27)
+        time.sleep(.2)
+        sense.set_pixels(pet_eat28)
+        time.sleep(.2)
+        sense.set_pixels(pet_eat29)
+        time.sleep(.2)
+        sense.set_pixels(pet_eat30)
+        time.sleep(.2)
+        sense.set_pixels(pet_eat31)
+        time.sleep(.2)
+        sense.set_pixels(pet_eat32)
+        time.sleep(.2)
+        sense.set_pixels(pet_eat33)
+        time.sleep(.2)
+        sense.set_pixels(pet_eat34)
+        time.sleep(.2)
+        sense.set_pixels(pet_eat35)
+        time.sleep(.2)
+        sense.clear()
+
+#different frames for animations
+#each letter correlates to a color code that we set or an "empty" code
 
 pet_sleep1 = [
 e, e, e, e, e, e, e, e,
@@ -21,365 +175,500 @@ g, g, g, g, g, g, g, g,
 e, e, e, e, e, e, e, e
 ]
 
-    
 pet_sleep2 = [
-e, e, e, e, e, e, e, e, 
+e, e, e, e, e, e, e, e,
 e, e, e, g, g, g, g, g,
-e, e, e, e, e, e, e, g, 
-e, e, e, e, e, e, g, e, 
-e, e, e, e, e, g, e, e, 
-e, e, e, e, g, e, e, e, 
-e, e, e, g, g, g, g, g, 
+e, e, e, e, e, e, e, g,
+e, e, e, e, e, e, g, e,
+e, e, e, e, e, g, e, e,
+e, e, e, e, g, e, e, e,
+e, e, e, g, g, g, g, g,
 e, e, e, e, e, e, e, e
 ]
 
 pet_sleep3 = [
-e,  e,  e,  e,  e,  e,  e,  e, 
-e,  e,  g,  g,  g,  g,  g,  e, 
-e,  e,  e,  e,  e,  e,  g,  e, 
-e,  e,  e,  e,  e,  g,  e,  e, 
-e,  e,  e,  e,  g,  e,  e,  e, 
-e,  e,  e,  g,  e,  e,  e,  e, 
-e,  e,  g,  g,  g,  g,  g,  e, 
-e,  e,  e,  e,  e,  e,  e,  e
+e, e, e, e, e, e, e, e,
+e, e, g, g, g, g, g, e,
+e, e, e, e, e, e, g, e,
+e, e, e, e, e, g, e, e,
+e, e, e, e, g, e, e, e,
+e, e, e, g, e, e, e, e,
+e, e, g, g, g, g, g, e,
+e, e, e, e, e, e, e, e
 ]
-    
+
 pet_sleep4 = [
-e,  e,  e,  e,  e,  e,  e,  e, 
-e,  g,  g,  g,  g,  g,  e,  e, 
-e,  e,  e,  e,  e,  g,  e,  e, 
-e,  e,  e,  e,  g,  e,  e,  e, 
-e,  e,  e,  g,  e,  e,  e,  e, 
-e,  e,  g,  e,  e,  e,  e,  e, 
-e,  g,  g,  g,  g,  g,  e,  e, 
-e,  e,  e,  e,  e,  e,  e,  e
+e, e, e, e, e, e, e, e,
+e, g, g, g, g, g, e, e,
+e, e, e, e, e, g, e, e,
+e, e, e, e, g, e, e, e,
+e, e, e, g, e, e, e, e,
+e, e, g, e, e, e, e, e,
+e, g, g, g, g, g, e, e,
+e, e, e, e, e, e, e, e
+]
+
+Pet_jump1 = [
+e, e, e, e, e, e, e, e,
+e, g, g, g, e, g, g, g,
+g, g, e, g, g, g, e, g,
+g, p, p, g, g, g, p, p,
+g, g, g, y, y, y, g, g,
+g, g, g, g, g, g, g, g,
+g, g, g, g, g, g, g, g,
+e, g, g, e, e, g, g, e,
+]
+
+Pet_jump2 = [
+e, g, g, g, e, g, g, g,
+g, g, e, g, g, g, e, g,
+g, p, p, g, g, g, p, p,
+g, g, g, y, y, y, g, g,
+g, g, g, g, g, g, g, g,
+g, g, g, g, g, g, g, g,
+e, g, g, e, e, e, e, e,
+e, e, e, e, e, e, e, e,
+]
+
+Pet_jump3 = [
+e, e, e, e, e, e, e, e,
+e, g, g, g, e, g, g, g,
+g, g, e, g, g, g, e, g,
+g, p, p, g, g, g, p, p,
+g, g, g, y, y, y, g, g,
+g, g, g, g, g, g, g, g,
+g, g, g, g, g, g, g, g,
+e, g, g, e, e, g, g, e,
+]
+
+Pet_jump4 = [
+e, g, g, g, e, g, g, g,
+g, g, e, g, g, g, e, g,
+g, p, p, g, g, g, p, p,
+g, g, g, y, y, y, g, g,
+g, g, g, g, g, g, g, g,
+g, g, g, g, g, g, g, g,
+e, e, e, e, e, g, g, e,
+e, e, e, e, e, e, e, e,
 ]
 
 pet_walk1 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  g,  g,  g,  e,  g,  g,  g, 
-g,  g,  e,  g,  g,  g,  e,  g, 
-g,  p,  p,  g,  g,  g,  p,  p, 
-g,  g,  g,  y,   y,   y,  g,  g,
-g,  g,  g,  g,  g,  g,  g,  g, 
-g,  g,  g,  g,  g,  g,  g,  g, 
-e,  g,  g,  e,  e,  g,  g,  e
+e, e, e, e, e, e, e, e,
+e, g, g, g, e, g, g, g,
+g, g, e, g, g, g, e, g,
+g, p, p, g, g, g, p, p,
+g, g, g, y, y, y, g, g,
+g, g, g, g, g, g, g, g,
+g, g, g, g, g, g, g, g,
+e, g, g, e, e, g, g, e
 ]
 
 pet_walk2 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  g,  g,  g,  e,  g,  g,  g, 
-g,  g,  e,  g,  g,  g,  e,  g, 
-g,  p,  p,  g,  g,  g,  p,  p, 
-g,  g,  g,  y,   y,   y,  g,  g,
-g,  g,  g,  g,  g,  g,  g,  g, 
-g,  g,  g,  g,  g,  g,  g,  g, 
-e,  e,  g,  g,  e,  e,  g,  g
+e, e, e, e, e, e, e, e,
+e, g, g, g, e, g, g, g,
+g, g, e, g, g, g, e, g,
+g, p, p, g, g, g, p, p,
+g, g, g, y, y, y, g, g,
+g, g, g, g, g, g, g, g,
+g, g, g, g, g, g, g, g,
+e, g, g, e, e, e, g, g
 ]
-    
-def walking():
-    for i in range (10):
-        sense.set_pixels(pet_walk1)
-        time.sleep(anim_speed)
-        sense.set_pixels(pet_walk2)
-        time.sleep(anim_speed)
-sense.clear()
 
-while True:
-    acc = sense.get_accelerometer_raw()
-    if acc['x'] > 2 or acc['y'] > 2 or acc['z'] > 2:
-        walking()
+pet_walk3 = [
+e, e, e, e, e, e, e, e,
+e, g, g, g, e, g, g, g,
+g, g, e, g, g, g, e, g,
+g, p, p, g, g, g, p, p,
+g, g, g, y, y, y, g, g,
+g, g, g, g, g, g, g, g,
+g, g, g, g, g, g, g, g,
+e, e, e, g, g, e, g, g
+]
 
-def sleeping():
-    true = 1
-    while(true):
-        sense.set_pixels(pet_sleep1)
-        time.sleep(anim_speed)
-        sense.set_pixels(pet_sleep2)
-        time.sleep(anim_speed)
-        sense.set_pixels(pet_sleep3)
-        time.sleep(anim_speed)
-        sense.set_pixels(pet_sleep4)
-        time.sleep(anim_speed)
 
+
+#EATING FLY
 pet_eat1 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  e,  e,  e,  e,  e,  e,  e, 
-e,  g,  g,  g,  e,  g,  g,  e, 
-g,  e,  e,  e,  g,  e,  e,  e, 
-g,  p,  p,  g,  g,  g,  p,  e, 
-g,  g,  g,  y,  y,  y,  g,  e,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  g,  g,  g,  g,  g,  e,  
+e, e, e, e, e, e, e, e,
+e, e, e, e, e, e, e, e,
+g, g, g, e, g, g, g, e,
+g, e, g, e, g, e, g, e,
+p, p, g, g, g, p, p, e,
+g, g, y, y, y, g, g, e,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
 pet_eat2 = [
-e,  e,  e,  e,  e,  b,  e,  e,
-e,  e,  e,  e,  e,  e,  e,  e, 
-e,  g,  g,  g,  e,  g,  g,  e, 
-g,  e,  e,  e,  g,  e,  e,  e, 
-g,  p,  p,  g,  g,  g,  p,  e, 
-g,  g,  g,  r,  y,  y,  g,  e,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  g,  g,  g,  g,  g,  e, 
+e, e, e, e, e, b, e, e,
+e, e, e, e, e, e, e, e,
+g, g, g, e, g, g, g, e,
+g, e, g, e, g, e, g, e,
+p, p, g, g, g, p, p, e,
+g, g, r, r, r, g, g, e,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
 pet_eat3 = [
-e,  e,  e,  e,  b,  e,  e,  e,
-e,  e,  e,  e,  e,  e,  e,  e, 
-e,  g,  g,  g,  e,  g,  g,  e, 
-g,  e,  e,  e,  g,  e,  e,  e, 
-g,  p,  p,  g,  g,  g,  p,  e, 
-g,  g,  g,  r,  r,  g,  g,  e,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  g,  g,  g,  g,  g,  e, 
+e, e, e, e, b, e, e, e,
+e, e, e, e, e, e, e, e,
+g, g, g, e, g, g, g, e,
+g, e, g, e, g, e, g, e,
+p, p, g, g, g, p, p, e,
+g, g, r, r, r, g, g, e,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
 pet_eat4 = [
-e,  e,  e,  b,  e,  e,  e,  e,
-e,  e,  e,  e,  e,  e,  e,  e, 
-e,  g,  g,  g,  e,  g,  g,  e, 
-g,  e,  e,  e,  g,  e,  e,  e, 
-g,  p,  p,  g,  g,  g,  p,  e, 
-g,  g,  g,  r,  r,  r,  g,  e,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  g,  g,  g,  g,  g,  e, 
-
+e, e, e, b, e, e, e, e,
+e, e, e, e, e, e, e, e,
+g, g, g, e, g, g, g, e,
+g, e, g, e, g, e, g, e,
+p, p, g, g, g, p, p, e,
+g, g, r, r, r, r, g, e,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
 pet_eat5 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  e,  e,  b,  e,  e,  e,  e, 
-e,  g,  g,  g,  e,  g,  g,  e, 
-g,  e,  e,  e,  g,  e,  e,  e, 
-g,  p,  p,  g,  g,  g,  p,  e, 
-g,  g,  g,  r,  r,  r,  r,  e,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  g,  g,  g,  g,  g,  e, 
+e, e, e, e, e, e, e, e,
+e, e, e, b, e, e, e, e,
+g, g, g, e, g, g, g, e,
+g, e, g, e, g, e, g, e,
+p, p, g, g, g, p, p, e,
+g, g, r, r, r, r, r, e,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
 pet_eat6 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  e,  e,  e,  b,  e,  e,  e, 
-e,  g,  g,  g,  e,  g,  g,  e, 
-g,  e,  e,  e,  g,  e,  e,  e, 
-g,  p,  p,  g,  g,  g,  p,  e, 
-g,  g,  g,  r,  r,  r,  r,  r,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  g,  g,  g,  g,  g,  e, 
+e, e, e, e, e, e, e, e,
+e, e, e, e, b, e, e, e,
+g, g, g, e, g, g, g, e,
+g, e, g, e, g, e, g, e,
+p, p, g, g, g, p, p, e,
+g, g, r, r, r, r, r, r,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
 pet_eat7 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  e,  e,  e,  e,  b,  e,  e, 
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  e,  g,  e,  g,  e,  g,  e, 
-p,  p,  g,  g,  g,  p,  p,  r, 
-g,  g,  y,  r,  r,  r,  r,  r,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  e,  e,  e,  g,  g,  e, 
+e, e, e, e, e, e, e, e,
+e, e, e, e, e, b, e, e,
+g, g, g, e, g, g, g, e,
+g, e, g, e, g, e, g, e,
+p, p, g, g, g, p, p, r,
+g, g, r, r, r, r, r, r,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
-
 pet_eat8 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  e,  e,  e,  e,  e,  b,  e, 
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  e,  g,  e,  g,  e,  g,  r, 
-p,  p,  g,  g,  g,  p,  p,  r, 
-g,  g,  y,  r,  r,  r,  r,  r,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  e,  e,  e,  g,  g,  e, 
+e, e, e, e, e, e, e, e,
+e, e, e, e, e, e, b, e,
+g, g, g, e, g, g, g, e,
+g, e, g, e, g, e, g, r,
+p, p, g, g, g, p, p, r,
+g, g, r, r, r, r, r, r,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
 pet_eat9 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  e,  e,  e,  e,  e,  e,  e, 
-g,  g,  g,  g,  g,  g,  g,  r, 
-g,  e,  g,  e,  g,  e,  g,  r, 
-p,  p,  g,  g,  g,  p,  p,  r, 
-g,  g,  y,  r,  r,  r,  r,  r,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  e,  e,  e,  g,  g,  e, 
+e, e, e, e, e, e, b, e,
+e, e, e, e, e, e, e, e,
+g, g, g, e, g, g, g, r,
+g, e, g, e, g, e, g, r,
+p, p, g, g, g, p, p, r,
+g, g, r, r, r, r, r, r,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
 pet_eat10 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  e,  e,  e,  e,  e,  e,  b, 
-g,  g,  g,  g,  g,  g,  g,  r, 
-g,  e,  g,  e,  g,  e,  g,  r, 
-p,  p,  g,  g,  g,  p,  p,  r, 
-g,  g,  y,  r,  r,  r,  r,  r,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  e,  e,  e,  g,  g,  e, 
+e, e, e, e, e, b, e, e,
+e, e, e, e, e, e, e, r,
+g, g, g, e, g, g, g, r,
+g, e, g, e, g, e, g, r,
+p, p, g, g, g, p, p, r,
+g, g, r, r, r, r, r, r,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
 pet_eat11 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  e,  e,  e,  e,  b,  r,  r, 
-g,  g,  g,  g,  g,  g,  g,  r, 
-g,  e,  g,  e,  g,  e,  g,  r, 
-p,  p,  g,  g,  g,  p,  p,  r, 
-g,  g,  y,  r,  r,  r,  r,  r,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  e,  e,  e,  g,  g,  e, 
+e, e, e, e, e, e, e, e,
+e, e, e, e, e, b, r, r,
+g, g, g, e, g, g, g, r,
+g, e, g, e, g, e, g, r,
+p, p, g, g, g, p, p, r,
+g, g, r, r, r, r, r, r,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
 pet_eat12 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  e,  e,  e,  e,  b,   r,   r, 
-g,  g,  g,  g,  g,  g,  g,   r, 
-g,  e,  g,  e,  g,  e,  g,   r, 
-p,  p,  g,  g,  g,  p,  p,   r, 
-g,  g,  y,   r,   r,   r,   r,   r,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  e,  e,  e,  g,  g,  e, 
+e, e, e, e, e, e, e, e,
+e, e, e, e, e, e, b, r,
+g, g, g, e, g, g, g, r,
+g, e, g, e, g, e, g, r,
+p, p, g, g, g, p, p, r,
+g, g, r, r, r, r, r, r,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
-def eating():
-     For i in range (20):
-        sense.set_pixels(pet_eat1)
-        time.sleep(1)
-        sense.set_pixels(pet_eat2)
-        time.sleep(1)
-        sense.set_pixels(pet_eat3)
-        time.sleep(1)
-        sense.set_pixels(pet_eat4)
-        time.sleep(1)
-        sense.set_pixels(pet_eat5)
-        time.sleep(1)
-        sense.set_pixels(pet_eat6)
-        time.sleep(1)
-        sense.set_pixels(pet_eat7)
-        time.sleep(1)
-        sense.set_pixels(pet_eat8)
-        time.sleep(1)
-        sense.set_pixels(pet_eat9)
-        time.sleep(1)
-        sense.set_pixels(pet_eat10)
-        time.sleep(1)
-        sense.set_pixels(pet_eat11)
-        time.sleep(1)
-        sense.set_pixels(pet_eat12)
-        time.sleep(1)
-sense.clear()
-
-pet_done_eating1 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  e,  e,  e,  e,  e,  e,  b, 
-g,  g,  g,  g,  g,  g,  g,  r, 
-g,  e,  g,  e,  g,  e,  g,  r, 
-p,  p,  g,  g,  g,  p,  p,  r, 
-g,  g,  y,  r,  r,  r,  r,  r,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  e,  e,  e,  g,  g,  e,
+pet_eat13 = [
+e, e, e, e, e, e, e, e,
+e, e, e, e, e, e, e, b,
+g, g, g, e, g, g, g, r,
+g, e, g, e, g, e, g, r,
+p, p, g, g, g, p, p, r,
+g, g, r, r, r, r, r, r,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
-pet_done_eating2 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  e,  e,  e,  e,  e,  e,  e, 
-g,  g,  g,  g,  g,  g,  g,  b, 
-g,  e,  g,  e,  g,  e,  g,  r, 
-p,  p,  g,  g,  g,  p,  p,  r, 
-g,  g,  y,  r,  r,  r,  r,  r,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  e,  e,  e,  g,  g,  e, 
+pet_eat14 = [
+e, e, e, e, e, e, e, e,
+e, e, e, e, e, e, e, e,
+g, g, g, e, g, g, g, b,
+g, e, g, e, g, e, g, r,
+p, p, g, g, g, p, p, r,
+g, g, r, r, r, r, r, r,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
-pet_done_eating3 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  e,  e,  e,  e,  e,  e,  e, 
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  e,  g,  e,  g,  e,  g,  b, 
-p,  p,  g,  g,  g,  p,  p,  r, 
-g,  g,  y,  r,  r,  r,  r,  r,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  e,  e,  e,  g,  g,  e, 
+pet_eat15 = [
+e, e, e, e, e, e, e, e,
+e, e, e, e, e, e, e, e,
+g, g, g, e, g, g, g, e,
+g, e, g, e, g, e, g, b,
+p, p, g, g, g, p, p, r,
+g, g, r, r, r, r, r, r,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
-pet_done_eating4 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  e,  e,  e,  e,  e,  e,  e, 
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  e,  g,  e,  g,  e,  g,  e, 
-p,  p,  g,  g,  g,  p,  p,  b, 
-g,  g,  y,  r,  r,  r,  r,  r,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  e,  e,  e,  g,  g,  e, 
+pet_eat16 = [
+e, e, e, e, e, e, e, e,
+e, e, e, e, e, e, e, e,
+g, g, g, e, g, g, g, e,
+g, e, g, e, g, e, g, e,
+p, p, g, g, g, p, p, b,
+g, g, r, r, r, r, r, r,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
-pet_done_eating5 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  e,  e,  e,  e,  e,  e,  e, 
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  e,  g,  e,  g,  e,  g,  e, 
-p,  p,  g,  g,  g,  p,  p,  e, 
-g,  g,  y,  r,  r,  r,  r,  b,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  e,  e,  e,  g,  g,  e, 
+pet_eat17 = [
+e, e, e, e, e, e, e, e,
+e, e, e, e, e, e, e, e,
+g, g, g, e, g, g, g, e,
+g, e, g, e, g, e, g, e,
+p, p, g, g, g, p, p, e,
+g, g, r, r, r, r, r, b,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
-pet_done_eating6 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  e,  e,  e,  e,  e,  e,  e, 
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  e,  g,  e,  g,  e,  g,  e, 
-p,  p,  g,  g,  g,  p,  p,  e, 
-g,  g,  y,  r,  r,  r,  b,  e,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  e,  e,  e,  g,  g,  e, 
+pet_eat18 = [
+e, e, e, e, e, e, e, e,
+e, e, e, e, e, e, e, e,
+g, g, g, e, g, g, g, e,
+g, e, g, e, g, e, g, e,
+p, p, g, g, g, p, p, e,
+g, g, r, r, r, r, b, e,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
-pet_done_eating7 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  e,  e,  e,  e,  e,  e,  e, 
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  e,  g,  e,  g,  e,  g,  e, 
-p,  p,  g,  g,  g,  p,  p,  e, 
-g,  g,  y,  r,  r,  b,  g,  e,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  e,  e,  e,  g,  g,  e,
+pet_eat19 = [
+e, e, e, e, e, e, e, e,
+e, e, e, e, e, e, e, e,
+g, g, g, e, g, g, g, e,
+g, e, g, e, g, e, g, e,
+p, p, g, g, g, p, p, e,
+g, g, r, r, r, b, g, e,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
-pet_done_eating8 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  e,  e,  e,  e,  e,  e,  e, 
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  e,  g,  e,  g,  e,  g,  e, 
-p,  p,  g,  g,  g,  p,  p,  e, 
-g,  g,  y,  r,  b,  g,  g,  e,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  e,  e,  e,  g,  g,  e, 
+pet_eat20 = [
+e, e, e, e, e, e, e, e,
+e, e, e, e, e, e, e, e,
+g, g, g, e, g, g, g, e,
+g, e, g, e, g, e, g, e,
+p, p, g, g, g, p, p, e,
+g, g, r, r, b, g, g, e,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
-pet_done_eating9 = [
-e,  e,  e,  e,  e,  e,  e,  e,
-e,  e,  e,  e,  e,  e,  e,  e, 
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  e,  g,  e,  g,  e,  g,  e, 
-p,  p,  g,  g,  g,  p,  p,  e, 
-g,  g,  y,  y,  y,  g,  g,  e,   
-g,  g,  g,  g,  g,  g,  g,  e, 
-g,  g,  e,  e,  e,  g,  g,  e,
+pet_eat21 = [
+e, e, e, e, e, e, e, e,
+e, e, e, e, e, e, e, e,
+g, g, g, e, g, g, g, e,
+g, e, g, e, g, e, g, e,
+p, p, g, g, g, p, p, e,
+g, g, y, y, y, g, g, e,
+g, g, g, g, g, g, g, e,
+g, g, e, e, e, g, g, e,
 ]
 
-def done_eating():
-     For i in range (20):
-        sense.set_pixels(pet_done_eating1)
-        time.sleep(1)
-        sense.set_pixels(pet_done_eating2)
-        time.sleep(1)
-        sense.set_pixels(pet_done_eating3)
-        time.sleep(1)
-        sense.set_pixels(pet_done_eating4)
-        time.sleep(1)
-        sense.set_pixels(pet_done_eating5)
-        time.sleep(1)
-        sense.set_pixels(pet_done_eating6)
-        time.sleep(1)
-        sense.set_pixels(pet_done_eating7)
-        time.sleep(1)
-        sense.set_pixels(pet_done_eating8)
-        time.sleep(1)
-        sense.set_pixels(pet_done_eating9)
-        time.sleep(1)
-sense.clear()
+pet_eat22 = [
+e, e, e, e, e, e, e, e,
+e, e, e, r, e, e, e, r,
+e, e, e, e, r, e, r, e,
+e, e, e, e, e, r, e, e,
+e, e, e, e, e, r, e, e,
+e, e, e, e, e, r, e, e,
+e, e, e, e, e, r, e, e,
+e, e, e, e, e, e, e, e,
+]
+
+pet_eat23 = [
+e, e, e, e, e, e, e, e,
+e, e, r, e, e, e, r, e,
+e, e, e, r, e, r, e, e,
+e, e, e, e, r, e, e, e,
+e, e, e, e, r, e, e, e,
+e, e, e, e, r, e, e, e,
+e, e, e, e, r, e, e, e,
+e, e, e, e, e, e, e, e,
+]
+
+
+pet_eat24 = [
+e, e, e, e, e, e, e, e,
+e, r, e, e, e, r, e, r,
+e, e, r, e, r, e, e, r,
+e, e, e, r, e, e, e, r,
+e, e, e, r, e, e, e, r,
+e, e, e, r, e, e, e, r,
+e, e, e, r, e, e, e, r,
+e, e, e, e, e, e, e, e,
+]
+
+pet_eat25 = [
+e, e, e, e, e, e, e, e,
+r, e, e, e, r, e, r, e,
+e, r, e, r, e, e, r, e,
+e, e, r, e, e, e, r, e,
+e, e, r, e, e, e, r, e,
+e, e, r, e, e, e, r, e,
+e, e, r, e, e, e, r, r,
+e, e, e, e, e, e, e, e,
+]
+
+pet_eat26 = [
+e, e, e, e, e, e, e, e,
+e, e, e, r, e, r, e, e,
+r, e, r, e, e, r, e, e,
+e, r, e, e, e, r, e, e,
+e, r, e, e, e, r, e, e,
+e, r, e, e, e, r, e, e,
+e, r, e, e, e, r, r, r,
+e, e, e, e, e, e, e, e,
+]
+
+pet_eat27 = [
+e, e, e, e, e, e, e, e,
+e, e, r, e, r, e, e, r,
+e, r, e, e, r, e, e, r,
+r, e, e, e, r, e, e, r,
+r, e, e, e, r, e, e, r,
+r, e, e, e, r, e, e, r,
+r, e, e, e, r, r, r, r,
+e, e, e, e, e, e, e, e,
+]
+
+pet_eat28 = [
+e, e, e, e, e, e, e, e,
+e, r, e, r, e, e, r, e,
+r, e, e, r, e, e, r, e,
+e, e, e, r, e, e, r, e,
+e, e, e, r, e, e, r, e,
+e, e, e, r, e, e, r, e,
+e, e, e, r, r, r, r, e,
+e, e, e, e, e, e, e, e,
+]
+
+pet_eat29 = [
+e, e, e, e, e, e, e, e,
+r, e, r, e, e, r, e, r,
+e, e, r, e, e, r, e, r,
+e, e, r, e, e, r, e, r,
+e, e, r, e, e, r, e, r,
+e, e, r, e, e, r, e, r,
+e, e, r, r, r, r, e, r,
+e, e, e, e, e, e, e, e,
+]
+
+pet_eat30 = [
+e, e, e, e, e, e, e, e,
+e, r, e, e, r, e, r, e,
+e, r, e, e, r, e, r, r,
+e, r, e, e, r, e, r, e,
+e, r, e, e, r, e, r, e,
+e, r, e, e, r, e, r, e,
+e, r, r, r, r, e, r, e,
+e, e, e, e, e, e, e, e,
+]
+
+pet_eat31 = [
+e, e, e, e, e, e, e, e,
+r, e, e, r, e, r, e, e,
+r, e, e, r, e, r, r, e,
+r, e, e, r, e, r, e, r,
+r, e, e, r, e, r, e, e,
+r, e, e, r, e, r, e, e,
+r, r, r, r, e, r, e, e,
+e, e, e, e, e, e, e, e,
+]
+
+pet_eat32 = [
+e, e, e, e, e, e, e, e,
+e, e, r, e, r, e, e, e,
+e, e, r, e, r, r, e, r,
+e, e, r, e, r, e, r, e,
+e, e, r, e, r, e, e, e,
+e, e, r, e, r, e, e, e,
+r, r, r, e, r, e, e, e,
+e, e, e, e, e, e, e, e,
+]
+
+pet_eat33 = [
+e, e, e, e, e, e, e, e,
+e, r, e, r, e, e, e, r,
+e, r, e, r, r, e, r, r,
+e, r, e, r, e, r, e, r,
+e, r, e, r, e, e, e, r,
+e, r, e, r, e, e, e, r,
+r, r, e, r, e, e, e, r,
+e, e, e, e, e, e, e, e,
+]
+
+pet_eat34 = [
+e, e, e, e, e, e, e, e,
+r, e, r, e, e, e, r, e,
+r, e, r, r, e, r, r, e,
+r, e, r, e, r, e, r, e,
+r, e, r, e, e, e, r, e,
+r, e, r, e, e, e, r, e,
+r, e, r, e, e, e, r, e,
+e, e, e, e, e, e, e, e,
+]
+
+pet_eat35 = [
+e, e, e, e, e, e, e, e,
+e, r, e, e, e, r, e, e,
+e, r, r, e, r, r, e, e,
+e, r, e, r, e, r, e, e,
+e, r, e, e, e, r, e, e,
+e, r, e, e, e, r, e, e,
+e, r, e, e, e, r, e, e,
+e, e, e, e, e, e, e, e,
+]
