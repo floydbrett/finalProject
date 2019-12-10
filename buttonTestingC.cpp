@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <wiringPi.h>
 
+//https://www.coveros.com/calling-python-code-from-c/
+
 // GPIO17 = 0, GPIO18 = 1, GPIO6 = 22, GPIO5 = 21, GPIO16 = 27
 int main(int argc, char** argv)
 {
